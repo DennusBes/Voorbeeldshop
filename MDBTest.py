@@ -36,11 +36,11 @@ totprice= 0
 count =0
 for product in products:
     try:
-        if product['price']['selling_price']>0:
+        if product['price']['selling_price']>0 and product['price']['selling_price'] == int:
             totprice += product['price']['selling_price']
             count +=1
     except KeyError:
-        print('Je sleutel is kapot')
+        print('Er ')
 
 print(f'De AVG price is {totprice / count} euro cent, en er zijn  {count} producten ')
 
