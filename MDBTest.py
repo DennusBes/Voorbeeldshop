@@ -6,8 +6,10 @@ collectionsNames = db.list_collection_names()
 for collectionName in collectionsNames:
     collection = db.get_collection(collectionName)
     print(f'Collection {collectionName} contains {collection.estimated_document_count()} documents')
+
 # zoeken
 products = MongodbDAO.getDocuments("products")
+
 # products is een Cursor
 print(f'First document in products = {products.next()}')
 first_product = products.next()
@@ -15,9 +17,11 @@ first_product = products.next()
 
 
 #2a Q1
+products.rewind() # Cursor terug naar oorspronkelijke plaats
 print( f" Naam 1st prod {first_product['name']} , 1st prod prijs:  {first_product['price']['selling_price']}")
 
-#2a Q2
+#2a Q2\
+products.rewind() # Cursor terug naar oorspronkelijke plaats
 for product in products:
     try:
         if product['name'][0] =='r':
@@ -39,7 +43,6 @@ for product in products:
         print('Je sleutel is kapot')
 
 print(f'De AVG price is {totprice / count} euro cent, en er zijn  {count} producten ')
-
 
 # zoeken met filter
 products = MongodbDAO.getDocuments("products",{'category': 'Wonen & vrije tijd'})
