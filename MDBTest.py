@@ -13,12 +13,31 @@ products = MongodbDAO.getDocuments("products")
 # products is een Cursor
 print(f'First document in products = {products.next()}')
 first_product = products.next()
+
+#2a Q1
 print( f" Naam 1st prod {first_product['name']} , 1st prod prijs:  {first_product['price']['selling_price']}")
 
-product_view = products.values()
-value_iterator = iter(product_view)
-first_value = 
+#2a Q2
+for product in products:
+    try:
+        if product['name'][0] =='r':
+            print(f" naam 1st prod dat begint met r :  {product['name']} ")
+            break
+    except:
+        continue
 
+#2a Q2
+totprice= 0
+count =0
+for product in products:
+    try:
+        if product['price']['selling_price']>0:
+            totprice += product['price']['selling_price']
+            count +=1
+    except KeyError:
+        print('ies kaput')
+
+print(f' De AVG price is {totprice / count} euro cent, en er zijn  {count} producten ')
 
 
 # zoeken met filter
